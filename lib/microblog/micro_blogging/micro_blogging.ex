@@ -1,12 +1,12 @@
-defmodule Microblog.Micro do
+defmodule Microblog.Micro_blogging do
   @moduledoc """
-  The Micro context.
+  The Micro_blogging context.
   """
 
   import Ecto.Query, warn: false
   alias Microblog.Repo
 
-  alias Microblog.Micro.Message
+  alias Microblog.Micro_blogging.Message
 
   @doc """
   Returns the list of messages.
