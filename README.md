@@ -1,3 +1,12 @@
+# About
+
+[GitHub](github.ccs.neu.edu/sophia)
+<br>
+[Domain](microblog.sophia1210.com)
+<br>
+microblog.sophia1210.com/messages
+
+
 # Microblog
 
 To start your Phoenix server:
