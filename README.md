@@ -1,6 +1,6 @@
 # About
 
-
+Sign up: you can sign up first and log in then.
 Log in: there are two users in my database
 apple@163.com
 banana@icloud.com
@@ -9,10 +9,10 @@ You can use one of this user to check login and logout.
 
 after login in,
 click new message: then you can post message as that user.
+Only only in user can post message.
 
 Also, as user, you can see other user's information in list_users.
 To see user detail and you can choose follow him or not.
-
 
 
 [GitHub](github.ccs.neu.edu/sophia)
