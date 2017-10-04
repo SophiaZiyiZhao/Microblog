@@ -3,7 +3,7 @@ defmodule MicroblogWeb.SessionController do
 
   alias Microblog.Accounts
 
-  def login(conn, %{"email" => email}) do
+    def login(conn, %{"email" => email}) do
     user = Accounts.get_user_by_email!(email)
 
     if user do
@@ -17,7 +17,7 @@ defmodule MicroblogWeb.SessionController do
       |> put_flash(:error, "No such user")
       |> redirect(to: message_path(conn, :index))
     end
-  end
+end
 
   def logout(conn, _params) do
     conn
