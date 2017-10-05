@@ -49,13 +49,5 @@ defmodule MicroblogWeb.FollowController do
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", follow: follow, changeset: changeset)
     end
-  end
- 
- # def delete(conn, %{"follow" => follow_params}) do
-  #  follow = Tofollow.get_follow!(follower_id: follow_params["follower_id"], following_id: follow_params["following.id])
-   #   Tofollow.delete_follow(follow)
-    #  conn
-     # |> put_flash(:info, "Follow deleted successfully.")
-      #|> redirect(to: message_path(conn, :index))
- # end
+   end
 end

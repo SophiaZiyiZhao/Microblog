@@ -27,8 +27,9 @@ defmodule MicroblogWeb.Router do
     post "/sessions", SessionController, :login
     
     delete "/sessions", SessionController, :logout
+    delete "/followers", FollowController, :delete
 
-    resources "/followers", FollowController, except: [:get, :show, :index]
+    resources "/followers", FollowController, only: [:create]
 
 end
 
