@@ -2,9 +2,8 @@
 
 [GitHub](github.ccs.neu.edu/sophia)
 <br>
-[Domain](microblog.sophia1210.com)
+microblog.sophia1210.com
 <br>
-microblog.sophia1210.com/messages
 
 <strong> HW05 </strong>
 Requirement:
