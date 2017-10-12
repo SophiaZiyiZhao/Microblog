@@ -6,45 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+
+    <title> Hello Microblog!</title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
   </head>
 
-<%= if @current_user do %>
-        <span class="text-light">
-          <%= @current_user.email %> |
+  <body>
+
+  <nav class="navbar navbar-light navbar-expand-md" style="background-color :#e3f2fd;">
+    <%= link("Microblogging", to: page_path(@conn, :index)) %>
+     
+    <button class="navbar-toggler" type="button"
+            data-toggle="collapse" data-target="#main-navbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="main-navbar">
+     <ul class="navbar-nav mr-auto">
+        <%= if @current_user do %>
+          <li class="nav-item active">
+            <%= link "About Me", to: user_path(@conn, :show, @current_user.id), class: "nav-link" %>
+          </li>
+
+          <li class="nav-item active">
+            <%= link "Create message", to: message_path(@conn, :new), class: "nav-link" %>
+          </li>
+
+          <li class="nav-item active">
+            <%= link "Users", to: user_path(@conn, :index), class: "nav-link" %>
+          </li>
+
+          <li class="nav-item active">
+            <%= link "Messages", to: message_path(@conn, :index), class: "nav-link" %>
+          </li>
+
+        <% end %>
+      </ul>
+    </div>
+
+
+     <%= if @current_user do %>
+        <span class="text-primary">
+          <%= @current_user.email %>
           <%= link("logout", to: session_path(@conn, :logout), method: :delete) %>
         </span>
       <% else %>
-        <%= form_for @conn, session_path(@conn, :login), 
-    [as: "user", class: "form-inline w-75"], fn f -> %>
-          <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-          <a class="navbar-brand mb-0">Micro-blogging</a>
-          <form class="form-inline">
+        <%= form_for @conn, session_path(@conn, :login), [as: "user", class: "form-inline w-75"], fn f -> %>
           <input type="text" placeholder="Email" class="form-control" name="email">
           <input type="submit" value="Log in" class="btn btn-info">
           <%= link "Sign Up", to: user_path(@conn, :new), class: "btn btn-info" %> 
-        </form>
-        
         <% end %>
-<% end %>
-</nav>
+      <% end %>
+    </nav>
 
-
-    <div class="container">
-      
-      <div class="row">
-        <div class="col-sm-12 my-2">
           <%= if get_flash(@conn, :info) do %> 
             <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
           <% end %>
           <%= if get_flash(@conn, :error) do %> 
             <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
           <% end %>
-        </div>
-</div>
-
+        
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>

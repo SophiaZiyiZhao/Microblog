@@ -11,7 +11,7 @@ def index(conn, _params) do
 
   def new(conn, _params) do
     changeset = Micro_blogging.change_message(%Message{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, user_id: conn.assigns[:current_user].id)
   end
 
   def create(conn, %{"message" => message_params}) do

@@ -2,10 +2,28 @@
 
 <ul>
 
-  <li>
-    <strong>Email:</strong>
-    <%= @user.email %>
-  </li>
+  <div class="container">
+              <div class="row">
+                <div class="col-md-8">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                          <li>
+                          <strong>Email:</strong>
+                          <%= @user.email %>
+                         </li>
+                          <div class="form-check">
+                          <label class="form-check-label">
+                              <input class="form-check-input" type="checkbox" value="">
+                              Follow
+                            </label>
+                          </tr>
+                        </div>
+                      </thead>
+                      <tbody>
+                     </div>
+                    </div>
+                  </div>
 
 </ul>
 

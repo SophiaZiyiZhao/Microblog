@@ -1,25 +1,32 @@
 # About
 
-Sign up: you can sign up first and log in then.
-Log in: there are two users in my database
-apple@163.com
-banana@icloud.com
-
-You can use one of this user to check login and logout.
-
-after login in,
-click new message: then you can post message as that user.
-Only only in user can post message.
-
-Also, as user, you can see other user's information in list_users.
-To see user detail and you can choose follow him or not.
-
-
 [GitHub](github.ccs.neu.edu/sophia)
 <br>
 [Domain](microblog.sophia1210.com)
 <br>
 microblog.sophia1210.com/messages
+
+<strong> HW05 </strong>
+Requirement:
+ - The "new message" link appears only when a user is logged in.
+ - Posting a new message assocites that message with the logged in user.
+ - Viewing a message shows the email address of the user who posted
+
+<stong> For User </strong>
+In the Home Page, you can choose login or sign up.
+Sign up: you can sign up first and log in then.
+Then you can log in by the user-email.
+
+After login in,
+click new message: then you can post message as that user.
+Only as a user, you can post message.
+
+Also, as user, you can see other user's information in Users.
+To see user detail and you can choose follow him or not.
+
+For Messages, you can see all messages in the datebase, but you can 
+only edit or delete your own message. You can just see the message for others.
+
 
 
 # Microblog
