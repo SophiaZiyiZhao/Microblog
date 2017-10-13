@@ -1,28 +1,60 @@
-<h2>Show Message</h2>
-     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar">
-       <span class="navbar-toggler-icon"></span>
-     </button>
-          
+  <div class="col-md-12 my-2">         
      <div class="card">
-     <div class='card-header'>
-       <strong>
-       <small class="text-primary">
+      <div class='card-body'>
+       <small class="text-secondary">
+
        <%= if @message.user do %>
+        <strong>
         <span>
-         @<%= link @message.user.email, to: user_path(@conn, :show, @message.user), class: "text-primary" %>
+        <h2> <%= link @message.user.email, to: user_path(@conn, :show, @message.user), class: "text-primary" %></h2>
+        </strong>
         </span>
+
          <% else %>
-         <span> sent by default </span>
-         <% end %>
+           <span> sent by default </span>
        </small>
-       </strong>
-     </div>
-     <div class="card-block">
-     </br>
-     <p class="card-text"><%= @message.content %> <br>... </p>
-     </div>
+         <% end %>
+         </br>
+         <h3>Content:<p class="card-text text-dark"><%= @message.content %></p></h3>
+
+       <%= if @current_user do %>
+         <%= if Microblog.Micro_blogging.get_like_by_ids(@current_user, @message) do %>
+           <button class="btn btn-outline-info">Liked</button>
+           <% else %>
+           <button class="btn btn-primary" id="like-btn" data-user_id="<%= @current_user.id %>">Like</button>
+       <% end %>
+     <% end %>
+      </div>
+    </div>
   </div>
+</div>
+
+ <div id="message-likes"
+     data-path="<%= like_path(@conn, :index) %>"
+     data-message_id="<%= @message.id %>">
+     &nbsp;
+ </div>
 
 
+<script id="likes-template" type="text/x-handlebars-template">
+  <div class="text-center">
+    <p>Likes: <%= Microblog.Micro_blogging.like_count(@message) %></p>
+    {{#each data}}
+      <p>{{user_email}} liked this message.</p>
+    {{else}}
+      <p>No likes</p>
+    {{/each}}
+  </div>
+</script>
+
+
+<h5>
+<%= if @message.user==@current_user do %>
 <span><%= link "Edit", to: message_path(@conn, :edit, @message) %></span>
+</br>
+<span><%= link "Delete", to: message_path(@conn, :delete, @message), method: :delete, data: [confirm: "sure?"] %> </span>
+<% end %>
+</br>
 <span><%= link "Back", to: message_path(@conn, :index) %></span>
+</h5>
+
