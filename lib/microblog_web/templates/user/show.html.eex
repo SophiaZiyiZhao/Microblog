@@ -1,31 +1,32 @@
-<h2>Show User</h2>
+<div class="col-md-8 my-2">
+  <div class="card">
+    <div calss='card-title'> 
+     <li>
+     <h3> <strong>Email:</strong> <%= @user.email %> </h3>
+     </li>     
+     <thead>
+        <tr>
+         <div class="form-check">
+           <label class="form-check-label">
+             <input class="form-check-input" type="checkbox" value="">
+              <h4>Follow</h4>                            
+           </label>
+         </div>
+        </tr>
+     </thead>
+     </div>
+   </div>
+</div>
 
-<ul>
+</br>
 
-  <div class="container">
-              <div class="row">
-                <div class="col-md-8">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                          <li>
-                          <strong>Email:</strong>
-                          <%= @user.email %>
-                         </li>
-                          <div class="form-check">
-                          <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="">
-                              Follow
-                            </label>
-                          </tr>
-                        </div>
-                      </thead>
-                      <tbody>
-                     </div>
-                    </div>
-                  </div>
-
-</ul>
-
+<h5>
+<%= if @current_user do %>
 <span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
+</br>
+<span><%= link "Delete", to: user_path(@conn, :delete, @user), method: :delete, data: [confirm: "sure?"] %> </span>
+<% end %>
+</br>
 <span><%= link "Back", to: user_path(@conn, :index) %></span>
+</h5>
+

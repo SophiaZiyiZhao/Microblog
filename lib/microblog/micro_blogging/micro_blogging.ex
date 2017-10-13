@@ -114,7 +114,7 @@ defmodule Microblog.Micro_blogging do
 
   """
   def list_likes do
-    Repo.all(Like)
+    Repo.all(Like) |> Repo.preload(:user)
   end
  
   def list_message_likes(message_id) do
