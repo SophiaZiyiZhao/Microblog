@@ -26,6 +26,10 @@ To see user detail and you can choose follow him or not.
 For Messages, you can see all messages in the datebase, but you can 
 only edit or delete your own message. You can just see the message for others.
 
+<strong> Like </strong>
+Like also works now, as user you can click show message.
+Then you can click twice for like this message.
+
 
 
 # Microblog
