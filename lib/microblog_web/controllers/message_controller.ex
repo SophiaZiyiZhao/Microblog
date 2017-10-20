@@ -9,7 +9,7 @@ def index(conn, _params) do
     render(conn, "index.html", messages: messages)
   end
 
-  def new(conn, _params) do
+def new(conn, _params) do
     changeset = Micro_blogging.change_message(%Message{})
     render(conn, "new.html", changeset: changeset, user_id: conn.assigns[:current_user].id)
   end
@@ -19,7 +19,7 @@ def index(conn, _params) do
       {:ok, message} ->
         MicroblogWeb.Endpoint.broadcast("updates:all", "new_message",
         %{"message_content" => message.content,
-          "message_show_path" => message_path(conn, :show, message)})
+          "message_show" => message_path(conn, :show, message)})
         conn
         |> put_flash(:info, "Message created successfully.")
         |> redirect(to: message_path(conn, :show, message))

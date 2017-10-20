@@ -1,20 +1,9 @@
 defmodule MicroblogWeb.UpdatesChannel do
   use MicroblogWeb, :channel
-  
-  alias Microblog.Micro_blogging
-  alias Microblog.Micro_blogging.Message
-  alias Phoenix.Socket
+ 
 
   def join("updates:all", payload, socket) do
       if authorized?(payload)do
-      {:ok, socket}
-    else
-      {:error, %{reason: "unauthorized"}}
-    end
-  end
-
-  def join("updates:" <> userId, payload, socket) do
-      if authorized?(payload) do
       {:ok, socket}
     else
       {:error, %{reason: "unauthorized"}}

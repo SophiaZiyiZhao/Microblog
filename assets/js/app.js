@@ -30,13 +30,12 @@ $(function() {
   let code = liketmlp.html();
   let tmpl = handlebars.compile(code);
 
-  let messageLike = $($("#post-likes")[0]);
+  let messageLike = $($("#message-likes")[0]);
   let path = messageLike.data('path');
   let message_id = messageLike.data('message_id');
 
   let button = $($("#like-btn")[0]);
   let like_userId = button.data('user_id');
-  let like_message_id = button.data('message_id');
 
   function fetch_likes() {
     function got_likes(data) {
@@ -47,7 +46,7 @@ $(function() {
 
     $.ajax({
       url: path,
-      data: {message_id: messageid},
+      data: {message_id: message_id},
       contentType: "application/json",
       dataType: "json",
       method: "GET",
@@ -56,7 +55,7 @@ $(function() {
   }
 
   function add_like() {
-    let data = {like: {user_id: like_userId, message_id: like_message_id}};
+    let data = {like: {user_id: like_userId, message_id: message_id}};
 
     $.ajax({
       url: path,

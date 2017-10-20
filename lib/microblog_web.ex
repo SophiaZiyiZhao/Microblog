@@ -57,7 +57,6 @@ defmodule MicroblogWeb do
     quote do
       use Phoenix.Channel
       import MicroblogWeb.Gettext
-      import MicroblogWeb.Helpers
     end
   end
 

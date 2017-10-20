@@ -5,7 +5,7 @@
       <th>Content</th>
     </tr>
   </thead>
-  <tbody id="message-index>
+  <tbody id="message-index">
 <%= for message <- @messages do %>
     <tr>
       <td><%= message.content %></td>

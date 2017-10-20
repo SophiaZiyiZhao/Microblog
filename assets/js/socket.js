@@ -57,28 +57,29 @@ socket.connect()
 let channel = socket.channel("updates:all", {})
 
 const newMessage = function(payload) {
-    let msg = document.createElement("tr");
+  
+  let message document.createElement("tr")
+  
+  let message_content = document.createElement("td")
+  message_content.innerText = payload.message_content
+  
+  let message_show = document.createElement("td")
+  message_show.className = "text-right"
+  let message_show_span = document.createElement("span")
+  let message_show_link = document.createElement("a")
+  message_show_link.href = payload.message_show
+  message_show_link.className = "btn btn-default btn-xs"
+  message_show_link.innerText = "Show"
+  message_show_span.appendChild(message_show_link)
+  message_show.appendChild(message_show_span)
 
-    // message content
-    let msg_content = document.createElement("td");
-    msg_content.innerText = payload.message_content;
 
-    // message show path
-    let msg_show = document.createElement("td");
-    msg_show.className = "text-right";
-    let msg_show_span = document.createElement("span");
-    let msg_show_link = document.createElement("a");
-    msg_show_link.href = payload.message_show_path;
-    msg_show_link.className = "btn btn-default btn-xs";
-    msg_show_link.innerText = "Show";
-    msg_show_span.appendChild(msg_show_link);
-    msg_show.appendChild(msg_show_span);
+  message.appendChild(message_content)
+  message.appendChild(message_show)
 
-    msg.appendChild(msg_contant);
-    msg.appendChild(msg_show);
+  return message
+}
 
-    return msg;
-  }
 
   channel.on("new_message", payload => {
     let message = newMessage(payload);
