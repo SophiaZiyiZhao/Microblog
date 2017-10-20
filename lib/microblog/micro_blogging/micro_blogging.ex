@@ -18,7 +18,9 @@ defmodule Microblog.Micro_blogging do
 
   """
   def list_messages do
-   Repo.preload(Repo.all(Message), :user)
+   Repo.all(Message)
+  |> Repo.preload(:user)
+  |> Repo.preload(:likes)
   end
 
   @doc """
@@ -35,7 +37,7 @@ defmodule Microblog.Micro_blogging do
       ** (Ecto.NoResultsError)
 
   """
-  def get_message!(id), do: Repo.preload(Repo.get!(Message, id), :user)
+  def get_message!(id), do: Repo.get!(Message, id) |> Repo.preload(:user) |> Repo.preload(:likes)
 
   @doc """
   Creates a message.
@@ -102,9 +104,6 @@ defmodule Microblog.Micro_blogging do
     Message.changeset(message, %{})
   end
 
-  def message_changest() do
-    Message.changest(%Message{}, %{})
-  end
 
   alias Microblog.Micro_blogging.Like
 

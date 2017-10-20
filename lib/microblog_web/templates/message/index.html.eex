@@ -5,7 +5,7 @@
       <th>Content</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="message-index>
 <%= for message <- @messages do %>
     <tr>
       <td><%= message.content %></td>
@@ -23,13 +23,4 @@
   </tbody>
 </table>
 
-<span><%= link "New Message", to: message_path(@conn, :new) %></span>
-
-  <script id="row-template"  type="text/x-handlebars-template">
-    <tr>
-      <td>{{content}}</td>
-      <td class="text-right">
-      <span>{{{show message_id}}}</span>
-      <span>{{{edit message_id}}}</span>
-    </tr>
-</script>
+<span><%= link "New Message", to: message_path(@conn, :new) %></span> 

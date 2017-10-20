@@ -18,7 +18,6 @@ import "phoenix_html"
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 import socket from "./socket"
-import "./update";
 
 let handlebars = require("handlebars");
 
@@ -31,26 +30,19 @@ $(function() {
   let code = liketmlp.html();
   let tmpl = handlebars.compile(code);
 
-  let messageLike = $($("#message-likes")[0]);
+  let messageLike = $($("#post-likes")[0]);
   let path = messageLike.data('path');
-  let messageid = messageLike.data('message_id');
+  let message_id = messageLike.data('message_id');
 
   let button = $($("#like-btn")[0]);
-  let userId = button.data('user_id');
-
-  function currentLike(arr) {
-    return arr['user_email'] == userEmail;
-  }
+  let like_userId = button.data('user_id');
+  let like_message_id = button.data('message_id');
 
   function fetch_likes() {
     function got_likes(data) {
       console.log(data);
       let html = tmpl(data);
-
       messageLike.html(html);
-      var bb = document.getElementById("like-button");
-      bb.innerHTML = "Like";
-      bb.onclick=(add_like)
     }
 
     $.ajax({
@@ -64,7 +56,7 @@ $(function() {
   }
 
   function add_like() {
-    let data = {like: {user_id: userId, message_id: messageid}};
+    let data = {like: {user_id: like_userId, message_id: like_message_id}};
 
     $.ajax({
       url: path,
@@ -74,7 +66,10 @@ $(function() {
       method: "POST",
       success: fetch_likes,
     });
+  window.location.reload();
   }
 
+  button.click(add_like);
+
   fetch_likes();
-});
+})
