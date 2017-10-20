@@ -24,3 +24,12 @@
 </table>
 
 <span><%= link "New Message", to: message_path(@conn, :new) %></span>
+
+  <script id="row-template"  type="text/x-handlebars-template">
+    <tr>
+      <td>{{content}}</td>
+      <td class="text-right">
+      <span>{{{show message_id}}}</span>
+      <span>{{{edit message_id}}}</span>
+    </tr>
+</script>

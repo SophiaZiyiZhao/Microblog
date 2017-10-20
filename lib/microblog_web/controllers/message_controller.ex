@@ -15,6 +15,8 @@ def index(conn, _params) do
   end
 
   def create(conn, %{"message" => message_params}) do
+    id = get_session(conn, :user_id)
+    message_params = %{"post" => message_params["post"], "user_id" => id}
     case Micro_blogging.create_message(message_params) do
       {:ok, message} ->
         message = Microblog.Repo.preload(message, :user)

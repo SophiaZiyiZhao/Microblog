@@ -7,8 +7,13 @@ defmodule MicroblogWeb.LikeController do
   action_fallback MicroblogWeb.FallbackController
 
   def index(conn, %{"message_id" => message_id}) do
-    likes = Micro_blogging.list_likes(message_id)
+    likes = Micro_blogging.list_message_likes(message_id)
     render(conn, "index.json", likes: likes)
+  end
+
+  def index(conn, _params) do
+    likes= Micro_blogging.list_likes()
+    render(conn, "index.jason", likes: likes)
   end
 
   def create(conn, %{"like" => like_params}) do

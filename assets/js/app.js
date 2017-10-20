@@ -17,8 +17,8 @@ import "phoenix_html"
 //
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
-
-// import socket from "./socket"
+import socket from "./socket"
+import "./update";
 
 let handlebars = require("handlebars");
 
@@ -27,27 +27,35 @@ $(function() {
     return;
   }
 
-  let tt = $($("#likes-template")[0]);
-  let code = tt.html();
+  let liketmpl = $($("#likes-template")[0]);
+  let code = liketmlp.html();
   let tmpl = handlebars.compile(code);
 
-  let dd = $($("#message-likes")[0]);
-  let path = dd.data('path');
-  let m_id = dd.data('message_id');
+  let messageLike = $($("#message-likes")[0]);
+  let path = messageLike.data('path');
+  let messageid = messageLike.data('message_id');
 
-  let bb = $($("#like-btn")[0]);
-  let u_id = bb.data('user_id');
+  let button = $($("#like-btn")[0]);
+  let userId = button.data('user_id');
+
+  function currentLike(arr) {
+    return arr['user_email'] == userEmail;
+  }
 
   function fetch_likes() {
     function got_likes(data) {
       console.log(data);
       let html = tmpl(data);
-      dd.html(html);
+
+      messageLike.html(html);
+      var bb = document.getElementById("like-button");
+      bb.innerHTML = "Like";
+      bb.onclick=(add_like)
     }
 
     $.ajax({
       url: path,
-      data: {message_id: m_id},
+      data: {message_id: messageid},
       contentType: "application/json",
       dataType: "json",
       method: "GET",
@@ -56,8 +64,7 @@ $(function() {
   }
 
   function add_like() {
-    let data = {like: {user_id: u_id, message_id: m_id}};
-    window.location.reload();
+    let data = {like: {user_id: userId, message_id: messageid}};
 
     $.ajax({
       url: path,
@@ -68,8 +75,6 @@ $(function() {
       success: fetch_likes,
     });
   }
-
-  bb.click(add_like);
 
   fetch_likes();
 });

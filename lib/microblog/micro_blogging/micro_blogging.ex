@@ -102,6 +102,10 @@ defmodule Microblog.Micro_blogging do
     Message.changeset(message, %{})
   end
 
+  def message_changest() do
+    Message.changest(%Message{}, %{})
+  end
+
   alias Microblog.Micro_blogging.Like
 
   @doc """

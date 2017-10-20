@@ -22,7 +22,8 @@ defmodule MicroblogWeb do
       use Phoenix.Controller, namespace: MicroblogWeb
       import Plug.Conn
       import MicroblogWeb.Router.Helpers
-      import MicroblogWeb.Gettext
+      import MicroblogWeb.Gettext 
+      import MicroblogWeb.Helpers
     end
   end
 
@@ -40,6 +41,7 @@ defmodule MicroblogWeb do
       import MicroblogWeb.Router.Helpers
       import MicroblogWeb.ErrorHelpers
       import MicroblogWeb.Gettext
+      import MicroblogWeb.Helpers
     end
   end
 
@@ -55,6 +57,7 @@ defmodule MicroblogWeb do
     quote do
       use Phoenix.Channel
       import MicroblogWeb.Gettext
+      import MicroblogWeb.Helpers
     end
   end
 
