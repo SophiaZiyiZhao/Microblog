@@ -22,7 +22,7 @@
   </div>
 
   <div class="form-group">
-    <%= submit "Post my message!", class: "btn btn-primary btn-actions" %>
+    <%= submit "Post!", class: "btn btn-info btn-actions" %>
   </div>
  </div>
 <% end %>

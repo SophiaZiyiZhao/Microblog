@@ -58,7 +58,7 @@ let channel = socket.channel("updates:all", {})
 
 const newMessage = function(payload) {
   
-  let message document.createElement("tr")
+  let message = document.createElement("tr")
   
   let message_content = document.createElement("td")
   message_content.innerText = payload.message_content

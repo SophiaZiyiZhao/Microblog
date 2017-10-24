@@ -13,13 +13,4 @@
 alias Microblog.Repo
 alias Microblog.Accounts.User
 
-Repo.delete_all(User)
-
-Repo.insert!(%User{email: "banana@icloud.com"})
-Repo.insert!(%User{email: "apple@163.com"})
-
-alias Microblog.Micro_blogging.Message
-Repo.delete_all(Message)
-
-Repo.insert!(%Message{content: "hello"})
-Repo.insert!(%Message{content: "what??"})
+Repo.insert!(%User{email: "admin@admin.com", is_admin?: true, password: "admin1234", password_confirmation: "admin1234"})

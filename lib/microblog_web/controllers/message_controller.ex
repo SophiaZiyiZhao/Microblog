@@ -5,16 +5,16 @@ defmodule MicroblogWeb.MessageController do
   alias Microblog.Micro_blogging.Message
 
 def index(conn, _params) do
-    messages = Micro_blogging.list_messages()
+    messages = Enum.reverse(Micro_blogging.list_messages())
     render(conn, "index.html", messages: messages)
   end
 
 def new(conn, _params) do
     changeset = Micro_blogging.change_message(%Message{})
-    render(conn, "new.html", changeset: changeset, user_id: conn.assigns[:current_user].id)
+    render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"message" => message_params}) do
+ def create(conn, %{"message" => message_params}) do
     case Micro_blogging.create_message(message_params) do
       {:ok, message} ->
         MicroblogWeb.Endpoint.broadcast("updates:all", "new_message",

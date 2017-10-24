@@ -8,7 +8,6 @@ defmodule Microblog.Micro_blogging.Message do
     field :content, :string
 
     belongs_to :user, Microblog.Accounts.User
-
     timestamps()
   end
 
