@@ -13,4 +13,7 @@
 alias Microblog.Repo
 alias Microblog.Accounts.User
 
+alias Microblog.Micro_blogging.Like
+Repo.delete_all(Like)
+
 Repo.insert!(%User{email: "admin@admin.com", is_admin?: true, password: "admin1234", password_confirmation: "admin1234"})

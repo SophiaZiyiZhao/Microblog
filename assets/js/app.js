@@ -55,7 +55,7 @@ $(function() {
   }
 
   function add_like() {
-    let data = {like: {user_id: u_id, message_id: m_id}};
+    let data = {like: {user_id: like_userId, message_id: m_id}};
 
     $.ajax({
       url: path,

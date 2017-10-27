@@ -22,7 +22,7 @@
            <button class="btn btn-outline-info">Liked</button>
            <% else %>
            <button class="btn btn-info" id="like-btn" data-user_id="<%= @current_user.id %>">Like</button>
-     <% end %>
+         <% end %>
       </div>
     </div>
   </div>
