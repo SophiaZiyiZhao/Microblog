@@ -17,16 +17,17 @@
          </br>
          <h3>Content:<p class="card-text text-dark"><%= @message.content %></p></h3>
 
-     
-         <%= if Microblog.Micro_blogging.get_like_by_ids(@current_user, @message) do %>
-           <button class="btn btn-outline-info">Liked</button>
-           <% else %>
-           <button class="btn btn-info" id="like-btn" data-user_id="<%= @current_user.id %>">Like</button>
-     <% end %>
+         <%= if @current_user do %>
+          <%= if Microblog.Micro_blogging.get_like_by_ids(@current_user, @message) do %>
+            <button class="btn btn-outline-info">Liked</button>
+          <% else %>
+            <button class="btn btn-info" id="like-btn"
+                    data-user_id="<%= @current_user.id %>">Like</button>
+          <% end %>
+       <% end %>
       </div>
     </div>
   </div>
-</div>
 
 <h5>
 <%= if @message.user==@current_user do %>

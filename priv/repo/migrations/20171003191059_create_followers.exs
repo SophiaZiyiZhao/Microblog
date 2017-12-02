@@ -7,6 +7,5 @@ defmodule Microblog.Repo.Migrations.CreateFollowers do
      add :following_id, references(:users, on_delete: :nothing)
       timestamps()
     end
-
-  end
+   end
 end

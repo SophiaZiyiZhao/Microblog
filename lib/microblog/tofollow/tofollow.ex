@@ -17,6 +17,10 @@ defmodule Microblog.Tofollow do
       [%Follow{}, ...]
 
   """
+  def list_follows do
+    Repo.all(Follow)
+  end
+
   @doc """
   Gets a single follow.
 
@@ -32,6 +36,10 @@ defmodule Microblog.Tofollow do
 
   """
   def get_follow!(id), do: Repo.get!(Follow, id)
+
+  def get_follow_by_users(a, b) do
+   Repo.get_by(Follow, follower_id: a.id, following_id: b.id)
+  end
 
   @doc """
   Creates a follow.
@@ -97,12 +105,4 @@ defmodule Microblog.Tofollow do
   def change_follow(%Follow{} = follow) do
     Follow.changeset(follow, %{})
   end
-
-   def get_follow(follow_params \\ %{}) do
-    Repo.get_by(Follow, follow_params)
-   end
- 
-   def user_is_following?(user1, user2) do
-    !!Repo.get_by(Follow, following_id: user2.id, follower_id: user1.id)
-   end
 end

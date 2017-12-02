@@ -3,6 +3,5 @@
 <ul>
 
 </ul>
-
-<span><%= link "Edit", to: follow_path(@conn, :edit, @follow) %></span>
+<span><%= link "Edit", to: follow_path(@conn, :edit, @follow) %> </span>
 <span><%= link "Back", to: follow_path(@conn, :index) %></span>

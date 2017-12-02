@@ -4,7 +4,9 @@
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
-
+ 
+ <%= hidden_input f, :follower_id, value: @current_user.id %>
+ <%= hidden_input f, :follwing_id, value: @current_user.id %>
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>

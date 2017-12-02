@@ -29,8 +29,9 @@ def new(conn, _params) do
 end
 
   def show(conn, %{"id" => id}) do
-    message = Micro_blogging.get_message!(id) |> Microblog.Repo.preload([:user])
+    message = Micro_blogging.get_message!(id)
     render(conn, "show.html", message: message)
+    render(conn, "show.html", liked: Micro_blogging.get_like_by_ids(conn.assigns[:current_user], message), message: message)
   end
 
   def edit(conn, %{"id" => id}) do

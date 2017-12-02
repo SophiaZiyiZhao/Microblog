@@ -4,16 +4,24 @@
      <li>
      <h3> <strong>Email:</strong> <%= @user.email %> </h3>
      </li>     
-     <thead>
-        <tr>
-         <div class="form-check">
-           <label class="form-check-label">
-             <input class="form-check-input" type="checkbox" value="">
-              <h4>Follow</h4>                            
-           </label>
-         </div>
-        </tr>
-     </thead>
+    
+     <%= if @current_user do %>
+      <%= if Microblog.Tofollow.get_follow_by_users(@current_user, @user) do %>
+
+     <span>
+     <%= link "Unfollow", to: follow_path(@conn, :delete, Microblog.Tofollow.get_follow_by_users(@current_user, @user)), method: :delete, class: "btn btn-danger btn-xs" %> </span>
+    <% else %>
+    <%= if @current_user != @user do %>
+    <%= form_for @conn, follow_path(@conn, :create), [as: "follow"], fn f -> %>
+                 <%= hidden_input f, :follwer_id, value: @current_user.id %>
+                 <%= hidden_input f, :following_id, value: @user.id %>
+                 <div class="form-group">
+                    <%= submit "Follow", class: "btn btn-info" %>
+                 </div>
+                 <% end %>
+    <% end %>
+    <% end %>
+    <% end %>
      </div>
    </div>
 </div>
@@ -21,12 +29,6 @@
 </br>
 
 <h5>
-<%= if @current_user do %>
-<span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
-</br>
-<span><%= link "Delete", to: user_path(@conn, :delete, @user), method: :delete, data: [confirm: "sure?"] %> </span>
-<% end %>
-</br>
 <span><%= link "Back", to: user_path(@conn, :index) %></span>
 </h5>
 

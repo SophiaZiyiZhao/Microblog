@@ -5,8 +5,8 @@ defmodule MicroblogWeb.FollowController do
   alias Microblog.Tofollow.Follow
 
   def index(conn, _params) do
-    followers = Tofollow.list_followers()
-    render(conn, "index.html", followers: followers)
+    follows = Tofollow.list_follows()
+    render(conn, "index.html", follows: follows)
   end
 
   def new(conn, _params) do
@@ -17,9 +17,10 @@ defmodule MicroblogWeb.FollowController do
   def create(conn, %{"follow" => follow_params}) do
     case Tofollow.create_follow(follow_params) do
       {:ok, follow} ->
+        follow_user = Microblog.Accounts.get_user!(follow_params["following_id"])
         conn
         |> put_flash(:info, "Follow created successfully.")
-        |> redirect(to: follow_path(conn, :show, follow))
+        |> redirect(to: user_path(conn, :show, follow_user))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -48,4 +49,13 @@ defmodule MicroblogWeb.FollowController do
         render(conn, "edit.html", follow: follow, changeset: changeset)
     end
    end
+
+   def delete(conn, %{"id" => id}) do
+    follow = Tofollow.get_follow!(id)
+    {:ok, _follow} = Tofollow.delete_follow(follow)
+
+    conn
+    |> put_flash(:info, "Follow deleted successfully.")
+    |> redirect(to: user_path(conn, :index))
+end
 end

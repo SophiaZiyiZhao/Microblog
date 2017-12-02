@@ -5,8 +5,8 @@ defmodule Microblog.Tofollow.Follow do
 
 
   schema "followers" do
-    belongs_to :following, User, foreign_key: :following_id
-    belongs_to :follower, User, foreign_key: :follower_id 
+    belongs_to :following, Microblog.Accounts.User, foreign_key: :following_id
+    belongs_to :follower, Microblog.Accounts.User, foreign_key: :follower_id 
     timestamps()
   end
 
