@@ -12,7 +12,7 @@ defmodule MicroblogWeb.LikeController do
   end
 
   def index(conn, _params) do
-    likes= Micro_blogging.list_likes()
+    likes = Micro_blogging.list_likes()
     render(conn, "index.jason", likes: likes)
   end
 

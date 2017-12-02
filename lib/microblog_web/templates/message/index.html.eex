@@ -5,15 +5,19 @@
       <th>Content</th>
     </tr>
   </thead>
+
   <tbody id="message-index">
 <%= for message <- @messages do %>
-    <tr>
-      <td><%= message.content %></td>
-<%= if message.user do %>
- <% end %>
+  <tr>
+  <td><%= message.content %></td>
+      <td>
+<%= link message.user.email, to: user_path(@conn, :show, message.user) %>
+</td>
+
       <td class="text-right">
         <span><%= link "Show", to: message_path(@conn, :show, message), class: "btn btn-default btn-xs" %></span>
-        <%= if @current_user == message.user do %>
+        <%= if is_admin?(@current_user) do %>
+
         <span><%= link "Edit", to: message_path(@conn, :edit, message), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Delete", to: message_path(@conn, :delete, message), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
 <% end %>

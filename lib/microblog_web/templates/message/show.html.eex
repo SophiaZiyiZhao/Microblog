@@ -1,4 +1,4 @@
-  <div class="col-md-12 my-2">         
+  <div class="col-md-12 my-2">
      <div class="card">
       <div class='card-body'>
        <small class="text-secondary">
@@ -17,14 +17,12 @@
          </br>
          <h3>Content:<p class="card-text text-dark"><%= @message.content %></p></h3>
 
-         <%= if @current_user do %>
-          <%= if Microblog.Micro_blogging.get_like_by_ids(@current_user, @message) do %>
-            <button class="btn btn-outline-info">Liked</button>
-          <% else %>
-            <button class="btn btn-info" id="like-btn"
-                    data-user_id="<%= @current_user.id %>">Like</button>
-          <% end %>
-       <% end %>
+
+         <%= if Microblog.Micro_blogging.get_like_by_ids(@current_user, @message) do %>
+           <button class="btn btn-outline-info">Liked</button>
+           <% else %>
+           <button class="btn btn-info" id="like-btn" data-user_id="<%= @current_user.id %>">Like</button>
+         <% end %>
       </div>
     </div>
   </div>
@@ -57,5 +55,3 @@
     {{/each}}
   </div>
 </script>
-
-
